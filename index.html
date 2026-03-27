@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dungeon Generator Bookmarklet</title>
+    <!-- AI-GENERATED: Autonomous Wealth Engine -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6359393063754801" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .instructions {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            text-align: left;
+            font-size: 0.95em;
+        }
+        .instructions p {
+            margin-bottom: 10px;
+            color: #444;
+        }
+        .bookmarklet-code {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-align: left;
+            margin-bottom: 25px;
+            position: relative; /* For absolute positioning of copy button */
+        }
+        .copy-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .copy-button:hover {
+            background-color: #218838;
+        }
+        .awe-ad-slot {
+            text-align: center;
+            padding: 15px;
+            margin: 20px 0;
+            background: #f0f0f0;
+            color: #888;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        footer {
+            margin-top: auto;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Niche Procedural Dungeon Generator</h1>
+        <p>Drag the bookmarklet below to your bookmarks bar to generate unique dungeon maps and encounters on the fly for your TTRPG sessions!</p>
+
+        <div class="instructions">
+            <h2>How to Use</h2>
+            <p><strong>1. Drag and Drop:</strong> Click and drag the "AI Dungeon Generator" link below directly into your browser's bookmarks toolbar.</p>
+            <p><strong>2. Activate on Page:</strong> Navigate to any webpage. Click the "AI Dungeon Generator" bookmark you just added.</p>
+            <p><strong>3. Interact:</strong> A modal will appear on the current page, allowing you to define parameters and generate your dungeon.</p>
+            <p><strong>(Note: This bookmarklet is a frontend interface. Actual generation would require a backend service or API integration.)</strong></p>
+        </div>
+
+        <a href="javascript:(function() {
+            const overlayId = 'awe-dungeon-generator-overlay';
+            if (document.getElementById(overlayId)) {
+                alert('Dungeon Generator is already open!');
+                return;
+            }
+
+            const overlay = document.createElement('div');
+            overlay.id = overlayId;
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            overlay.style.zIndex = '10000';
+            overlay.style.display = 'flex';
+            overlay.style.justifyContent = 'center';
+            overlay.style.alignItems = 'center';
+            overlay.style.padding = '20px';
+            overlay.style.boxSizing = 'border-box';
+
+            const modal = document.createElement('div');
+            modal.style.backgroundColor = '#ffffff';
+            modal.style.padding = '30px';
+            modal.style.borderRadius = '8px';
+            modal.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+            modal.style.maxWidth = '600px';
+            modal.style.width = '100%';
+            modal.style.textAlign = 'center';
+            modal.style.position = 'relative';
+
+            const title = document.createElement('h2');
+            title.textContent = 'AI Dungeon Generator';
+            title.style.color = '#007bff';
+            title.style.marginBottom = '20px';
+            modal.appendChild(title);
+
+            const form = document.createElement('div');
+            form.innerHTML = `
+                <div style='margin-bottom: 15px; text-align: left;'>
+                    <label for='dungeon-theme' style='display: block; margin-bottom: 5px; font-weight: bold;'>Theme:</label>
+                    <input type='text' id='dungeon-theme' placeholder='e.g., Ancient Tomb, Goblin Cave, Eldritch Library' style='width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'>
+                </div>
+                <div style='margin-bottom: 15px; text-align: left;'>
+                    <label for='dungeon-difficulty' style='display: block; margin-bottom: 5px; font-weight: bold;'>Difficulty:</label>
+                    <select id='dungeon-difficulty' style='width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'>
+                        <option value='easy'>Easy</option>
+                        <option value='medium' selected>Medium</option>
+                        <option value='hard'>Hard</option>
+                        <option value='deadly'>Deadly</option>
+                    </select>
+                </div>
+                <div style='margin-bottom: 15px; text-align: left;'>
+                    <label for='dungeon-features' style='display: block; margin-bottom: 5px; font-weight: bold;'>Key Features (comma-separated):</label>
+                    <input type='text' id='dungeon-features' placeholder='e.g., Traps, Puzzle, Boss Room, Hidden Treasure' style='width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'>
+                </div>
+                <div style='margin-bottom: 15px; text-align: left;'>
+                    <label for='output-format' style='display: block; margin-bottom: 5px; font-weight: bold;'>Output Format:</label>
+                    <select id='output-format' style='width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'>
+                        <option value='json'>JSON</option>
+                        <option value='text'>Plain Text</option>
+                        <option value='vtt-png'>VTT (Image Placeholder)</option>
+                        <option value='print'>Print (Image Placeholder)</option>
+                    </select>
+                </div>
+                <div id='generation-output' style='margin-top: 20px; padding: 15px; background-color: #f8f9fa; border: 1px dashed #ccc; border-radius: 4px; min-height: 100px; text-align: left; font-size: 0.9em; color: #555; overflow-y: auto;'>
+                    Your generated dungeon details will appear here...
+                </div>
+            `;
+            modal.appendChild(form);
+
+            const generateButton = document.createElement('button');
+            generateButton.textContent = 'Generate Dungeon';
+            generateButton.style.backgroundColor = '#007bff';
+            generateButton.style.color = 'white';
+            generateButton.style.border = 'none';
+            generateButton.style.padding = '12px 25px';
+            generateButton.style.borderRadius = '5px';
+            generateButton.style.cursor = 'pointer';
+            generateButton.style.fontSize = '1.1em';
+            generateButton.style.marginTop = '15px';
+            generateButton.style.transition = 'background-color 0.3s ease';
+
+            generateButton.onmouseover = () => generateButton.style.backgroundColor = '#0056b3';
+            generateButton.onmouseout = () => generateButton.style.backgroundColor = '#007bff';
+
+            generateButton.onclick = () => {
+                const theme = document.getElementById('dungeon-theme').value;
+                const difficulty = document.getElementById('dungeon-difficulty').value;
+                const features = document.getElementById('dungeon-features').value;
+                const format = document.getElementById('output-format').value;
+                const outputDiv = document.getElementById('generation-output');
+
+                // ** IMPORTANT: This is a placeholder for actual AI generation. **
+                // In a real application, this would make an API call to your backend.
+                // For this bookmarklet, we simulate a response.
+
+                outputDiv.textContent = 'Generating... (Simulated)';
+
+                setTimeout(() => {
+                    let simulatedOutput = `--- Dungeon Generation Request ---\n`;
+                    simulatedOutput += `Theme: ${theme || 'Generic'}\n`;
+                    simulatedOutput += `Difficulty: ${difficulty}\n`;
+                    simulatedOutput += `Key Features: ${features || 'None specified'}\n`;
+                    simulatedOutput += `Output Format: ${format}\n\n`;
+                    simulatedOutput += `--- Simulated Dungeon Details ---\n`;
+                    simulatedOutput += `Generated by AI Niche Procedural Dungeon Generator.\n`;
+                    simulatedOutput += `Map: (Placeholder for ${format} map)\n`;
+                    simulatedOutput += `Encounters: \n`;
+                    simulatedOutput += `- Room 1: A challenge appropriate for ${difficulty} difficulty, themed around ${theme}.\n`;
+                    simulatedOutput += `- Room 2: A potential hazard or puzzle related to ${features.split(',')[0] || 'general exploration'}.\n`;
+                    simulatedOutput += `Lore Snippet: A brief piece of history or context for this dungeon.\n`;
+                    simulatedOutput += `Treasure: Potential rewards fitting the ${difficulty} level.\n`;
+
+                    if (format === 'json') {
+                        outputDiv.textContent = JSON.stringify({
+                            theme: theme || 'Generic',
+                            difficulty: difficulty,
+                            features: features.split(',').map(f => f.trim()).filter(f => f !== ''),
+                            map_placeholder: `Generated ${format} map`,
+                            encounters: [
+                                { name: "Challenge Room", description: `A challenge appropriate for ${difficulty} difficulty, themed around ${theme}.` },
+                                { name: "Hazard/Puzzle", description: `A potential hazard or puzzle related to ${features.split(',')[0] || 'general exploration'}.` }
+                            ],
+                            lore: "A brief piece of history or context for this dungeon.",
+                            treasure: `Potential rewards fitting the ${difficulty} level.`
+                        }, null, 2);
+                    } else {
+                        outputDiv.textContent = simulatedOutput;
+                    }
+                }, 1500); // Simulate network delay
+            };
+
+            modal.appendChild(generateButton);
+
+            const closeButton = document.createElement('button');
+            closeButton.textContent = 'Close';
+            closeButton.style.backgroundColor = '#6c757d';
+            closeButton.style.color = 'white';
+            closeButton.style.border = 'none';
+            closeButton.style.padding = '10px 20px';
+            closeButton.style.borderRadius = '5px';
+            closeButton.style.cursor = 'pointer';
+            closeButton.style.fontSize = '1em';
+            closeButton.style.marginTop = '15px';
+            closeButton.style.marginLeft = '10px';
+            closeButton.style.transition = 'background-color 0.3s ease';
+
+            closeButton.onmouseover = () => closeButton.style.backgroundColor = '#5a6268';
+            closeButton.onmouseout = () => closeButton.style.backgroundColor = '#6c757d';
+
+            closeButton.onclick = () => {
+                document.body.removeChild(overlay);
+            };
+            modal.appendChild(closeButton);
+
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+        })()" id="awe-dungeon-generator-bookmarklet">AI Dungeon Generator</a>
+
+        <div class="awe-ad-slot">
+            [ Advertisement Placeholder ]
+        </div>
+
+        <div class="container" style="background-color: #e9ecef; margin-top: 20px;">
+            <h2>Bookmarklet Code</h2>
+            <p>Copy the code below to create your own bookmarklet.</p>
+            <pre class="bookmarklet-code" id="bookmarklet-code-display"></pre>
+            <button class="copy-button" onclick="copyBookmarkletCode()">Copy to Clipboard</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Autonomous Wealth Engine. All rights reserved.</p>
+        <p>This product is not subject to the EU AI Act as it is a user-deployed tool and does not represent a systemic AI system.</p>
+    </footer>
+
+    <script>
+        const bookmarkletJsCode = `javascript:(function() {
+            const overlayId = 'awe-dungeon-generator-overlay';
+            if (document.getElementById(overlayId)) {
+                alert('Dungeon Generator is already open!');
+                return;
+            }
+
+            const overlay = document.createElement('div');
+            overlay.id = overlayId;
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            overlay.style.zIndex = '10000';
+            overlay.style.display = 'flex';
+            overlay.style.justifyContent = 'center';
+            overlay.style.alignItems = 'center';
+            overlay.style.padding = '20px';
+            overlay.style.boxSizing = 'border-box';
+
+            const modal = document.createElement('div');
+            modal.style.backgroundColor = '#ffffff';
+            modal.style.padding = '30px';
+            modal.style.borderRadius = '8px';
+            modal.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+            modal.style.maxWidth = '600px';
+            modal.style.width = '100%';
+            modal.style.textAlign = 'center';
+            modal.style.position = 'relative';
+
+            const title = document.createElement('h2');
+            title.textContent = 'AI Dungeon Generator';
+            title.style.color = '#007bff';
+            title.style.marginBottom = '20px';
+            modal.appendChild(title);
+
+            const form = document.createElement('div');
+            form.innerHTML = \`
+                <div style='margin-bottom: 15px; text-align: left;'>
+                    <label for='dungeon-theme' style='display: block; margin-bottom: 5px; font-weight: bold;'>Theme:</label>
+                    <input type='text' id='dungeon-theme' placeholder='e.g., Ancient Tomb, Goblin Cave, Eldritch Library' style='width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'>
+                </div>
+                <div style='margin-bottom: 15px; text-align: left;'>
+                    <label for='dungeon-difficulty' style='display: block; margin-bottom: 5px; font-weight: bold;'>Difficulty:</label>
+                    <select id='dungeon-difficulty' style='width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'>
+                        <option value='easy'>Easy</option>
+                        <option value='medium' selected>Medium</option>
+                        <option value='hard'>Hard</option>
+                        <option value='deadly'>Deadly</option>
+                    </select>
+                </div>
+                <div style='margin-bottom: 15px; text-align: left;'>
+                    <label for='dungeon-features' style='display: block; margin-bottom: 5px; font-weight: bold;'>Key Features (comma-separated):</label>
+                    <input type='text' id='dungeon-features' placeholder='e.g., Traps, Puzzle, Boss Room, Hidden Treasure' style='width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'>
+                </div>
+                <div style='margin-bottom: 15px; text-align: left;'>
+                    <label for='output-format' style='display: block; margin-bottom: 5px; font-weight: bold;'>Output Format:</label>
+                    <select id='output-format' style='width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'>
+                        <option value='json'>JSON</option>
+                        <option value='text'>Plain Text</option>
+                        <option value='vtt-png'>VTT (Image Placeholder)</option>
+                        <option value='print'>Print (Image Placeholder)</option>
+                    </select>
+                </div>
+                <div id='generation-output' style='margin-top: 20px; padding: 15px; background-color: #f8f9fa; border: 1px dashed #ccc; border-radius: 4px; min-height: 100px; text-align: left; font-size: 0.9em; color: #555; overflow-y: auto;'>
+                    Your generated dungeon details will appear here...
+                </div>
+            \`;
+            modal.appendChild(form);
+
+            const generateButton = document.createElement('button');
+            generateButton.textContent = 'Generate Dungeon';
+            generateButton.style.backgroundColor = '#007bff';
+            generateButton.style.color = 'white';
+            generateButton.style.border = 'none';
+            generateButton.style.padding = '12px 25px';
+            generateButton.style.borderRadius = '5px';
+            generateButton.style.cursor = 'pointer';
+            generateButton.style.fontSize = '1.1em';
+            generateButton.style.marginTop = '15px';
+            generateButton.style.transition = 'background-color 0.3s ease';
+
+            generateButton.onmouseover = () => generateButton.style.backgroundColor = '#0056b3';
+            generateButton.onmouseout = () => generateButton.style.backgroundColor = '#007bff';
+
+            generateButton.onclick = () => {
+                const theme = document.getElementById('dungeon-theme').value;
+                const difficulty = document.getElementById('dungeon-difficulty').value;
+                const features = document.getElementById('dungeon-features').value;
+                const format = document.getElementById('output-format').value;
+                const outputDiv = document.getElementById('generation-output');
+
+                outputDiv.textContent = 'Generating... (Simulated)';
+
+                setTimeout(() => {
+                    let simulatedOutput = \`--- Dungeon Generation Request ---\n\`;
+                    simulatedOutput += \`Theme: \${theme || 'Generic'}\\n\`;
+                    simulatedOutput += \`Difficulty: \${difficulty}\\n\`;
+                    simulatedOutput += \`Key Features: \${features || 'None specified'}\\n\`;
+                    simulatedOutput += \`Output Format: \${format}\\n\\n\`;
+                    simulatedOutput += \`--- Simulated Dungeon Details ---\n\`;
+                    simulatedOutput += \`Generated by AI Niche Procedural Dungeon Generator.\n\`;
+                    simulatedOutput += \`Map: (Placeholder for \${format} map)\\n\`;
+                    simulatedOutput += \`Encounters: \\n\`;
+                    simulatedOutput += \`- Room 1: A challenge appropriate for \${difficulty} difficulty, themed around \${theme}.\\n\`;
+                    simulatedOutput += \`- Room 2: A potential hazard or puzzle related to \${features.split(',')[0] || 'general exploration'}.\\n\`;
+                    simulatedOutput += \`Lore Snippet: A brief piece of history or context for this dungeon.\\n\`;
+                    simulatedOutput += \`Treasure: Potential rewards fitting the \${difficulty} level.\\n\`;
+
+                    if (format === 'json') {
+                        outputDiv.textContent = JSON.stringify({
+                            theme: theme || 'Generic',
+                            difficulty: difficulty,
+                            features: features.split(',').map(f => f.trim()).filter(f => f !== ''),
+                            map_placeholder: \`Generated \${format} map\`,
+                            encounters: [
+                                { name: "Challenge Room", description: \`A challenge appropriate for \${difficulty} difficulty, themed around \${theme}.\` },
+                                { name: "Hazard/Puzzle", description: \`A potential hazard or puzzle related to \${features.split(',')[0] || 'general exploration'}.\` }
+                            ],
+                            lore: "A brief piece of history or context for this dungeon.",
+                            treasure: \`Potential rewards fitting the \${difficulty} level.\`
+                        }, null, 2);
+                    } else {
+                        outputDiv.textContent = simulatedOutput;
+                    }
+                }, 1500); // Simulate network delay
+            };
+
+            modal.appendChild(generateButton);
+
+            const closeButton = document.createElement('button');
+            closeButton.textContent = 'Close';
+            closeButton.style.backgroundColor = '#6c757d';
+            closeButton.style.color = 'white';
+            closeButton.style.border = 'none';
+            closeButton.style.padding = '10px 20px';
+            closeButton.style.borderRadius = '5px';
+            closeButton.style.cursor = 'pointer';
+            closeButton.style.fontSize = '1em';
+            closeButton.style.marginTop = '15px';
+            closeButton.style.marginLeft = '10px';
+            closeButton.style.transition = 'background-color 0.3s ease';
+
+            closeButton.onmouseover = () => closeButton.style.backgroundColor = '#5a6268';
+            closeButton.onmouseout = () => closeButton.style.backgroundColor = '#6c757d';
+
+            closeButton.onclick = () => {
+                document.body.removeChild(overlay);
+            };
+            modal.appendChild(closeButton);
+
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+        })()`;
+
+        document.getElementById('bookmarklet-code-display').textContent = bookmarkletJsCode;
+
+        function copyBookmarkletCode() {
+            const codeDisplay = document.getElementById('bookmarklet-code-display');
+            const textArea = document.createElement("textarea");
+            textArea.value = codeDisplay.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert('Bookmarklet code copied to clipboard!');
+            } catch (err) {
+                console.error('Unable to copy code', err);
+                alert('Failed to copy code. Please copy manually.');
+            }
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html>
